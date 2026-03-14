@@ -1,0 +1,19 @@
+.containerOfEverthing {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f7f4f4;
+}
+
+.mainBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.card {
+  background-color: white;
+  min-width: 300px;
+  min-height: 320px;
+}

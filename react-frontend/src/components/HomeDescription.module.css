@@ -1,0 +1,15 @@
+.middleBar {
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+  padding-left: 150px;
+  padding-right: 150px;
+}
+
+.mainLogo {
+  width: 500px;
+}
+
+.description {
+  font-size: 50px;
+}
