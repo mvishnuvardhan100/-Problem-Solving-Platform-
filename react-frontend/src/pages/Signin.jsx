@@ -4,7 +4,7 @@ import { SignHeader } from "../components/SignHeader"
 import { Input } from "../components/Input"
 import { Button } from "../components/Button"
 import { BottomWarning } from "../components/BottomWarning"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Error } from "../components/Error";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthContext"
@@ -16,7 +16,11 @@ export const Signin = () => {
   const [signinError, setSigninError] = useState(false);
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
-  
+  const { isLoggedIn } = useContext(AuthContext);
+
+  useEffect(() => {
+    if(isLoggedIn) navigate("/");
+  }, [isLoggedIn]);
 
   return (
     <div className={styles.containerOfEverthing}>
@@ -52,7 +56,6 @@ export const Signin = () => {
                 console.log("Sign-in success:", result);
                 // localStorage.setItem("token", result.token);
                 login(result.token);
-                navigate("/");
               }
             })
           }).catch((err) => {

@@ -4,8 +4,11 @@ import { SignHeader } from "../components/SignHeader"
 import { Input } from "../components/Input"
 import { Button } from "../components/Button"
 import { BottomWarning } from "../components/BottomWarning"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Error } from "../components/Error";
+import { AuthContext } from "../AuthContext";
+import {  useNavigate } from "react-router-dom";
+import { useContext } from "react";
 
 export const Signup = () => {
   const [email, setEmail] = useState("");
@@ -13,6 +16,13 @@ export const Signup = () => {
   const [lastName, setLastName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [signupError, setSignupError] = useState("");
+  const { login, isLoggedIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if(isLoggedIn) navigate("/");
+  }, [isLoggedIn]);
+
   return (
     <div className={styles.containerOfEverthing}>
       <SignUpInTopBar></SignUpInTopBar>
@@ -38,26 +48,29 @@ export const Signup = () => {
         <Button onClick={() => {
           fetch("http://localhost:3000/signup", {
             method: "POST",
-            headers: {'content-type': 'application/json'},
+            headers: {
+              "content-type": "application/json"
+            },
             body: JSON.stringify({
               firstName,
               lastName,
               email,
               password
-            }).then((response) => {
-              response.json().then((result) => {
-                if(!response.ok) {
-                  setSignupError(true);
-                  console.log("Sign-up failed: " + result);
-                } else {
-                  setSignupError(false);
-                  console.log("Sign-up success: " + result);
-                }
-              })
-            }).catch((err) => {
-              setSignupError(true);
-              console.log("Sign-up failed: " + err);
             })
+          }).then((response) => {
+            response.json().then((result) => {
+              if(!response.ok) {
+                console.log("Parsing Error");
+                setSignupError(true);
+              } else {
+                setSignupError(false);
+                console.log("Success");
+                login(result.token);
+              }
+            })
+          }).catch((err) => {
+            console.log("Error: " + err);
+            setSignupError(true);
           })
         }} data={"Create"} />
 
