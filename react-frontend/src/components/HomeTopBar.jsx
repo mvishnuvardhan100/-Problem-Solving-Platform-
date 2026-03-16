@@ -2,6 +2,8 @@ import styles from './HomeTopBar.module.css';
 import { Link } from "react-router-dom";
 import { SignupSignin } from "./SignupSignin";
 import { useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../AuthContext";
 
 export const HomeTopBar = () => {
   const { isLoggedIn } = useContext(AuthContext)
