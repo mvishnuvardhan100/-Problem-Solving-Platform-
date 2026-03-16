@@ -4,6 +4,7 @@ import { SignupSignin } from "./SignupSignin";
 import { useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../AuthContext";
+import { AvatarSignout } from "./AvatarSignout";
 
 export const HomeTopBar = () => {
   const { isLoggedIn } = useContext(AuthContext)
@@ -34,7 +35,7 @@ export const HomeTopBar = () => {
           <input className={styles.search} type="text" placeholder="Type to Search" />
         </div> 
         {!isLoggedIn && <SignupSignin />}
-        
+        {isLoggedIn && <AvatarSignout />}
       </div>
     </div>
   )

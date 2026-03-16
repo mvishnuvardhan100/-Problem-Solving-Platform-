@@ -6,11 +6,17 @@ import { Button } from "../components/Button"
 import { BottomWarning } from "../components/BottomWarning"
 import { useState } from "react";
 import { Error } from "../components/Error";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../AuthContext"
+import { useContext } from "react";
 
 export const Signin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [signinError, setSigninError] = useState(false);
+  const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
+  
 
   return (
     <div className={styles.containerOfEverthing}>
@@ -44,7 +50,9 @@ export const Signin = () => {
               } else {
                 setSigninError(false);
                 console.log("Sign-in success:", result);
-                localStorage.setItem("token", result.token);
+                // localStorage.setItem("token", result.token);
+                login(result.token);
+                navigate("/");
               }
             })
           }).catch((err) => {

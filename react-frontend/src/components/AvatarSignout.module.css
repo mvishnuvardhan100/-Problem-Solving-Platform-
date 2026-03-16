@@ -1,0 +1,13 @@
+.avatar {
+  width: 35px;
+  display: block;
+}
+
+
+
+.signoutButton {
+  width: 100px;
+  border: none;
+  background-color: white;
+  font-size: 18px;
+}
