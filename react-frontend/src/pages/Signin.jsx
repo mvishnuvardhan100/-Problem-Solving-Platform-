@@ -20,15 +20,17 @@ export const Signin = () => {
         <SignHeader data={"Sign in"} />
         <Input onChange={(e) => {
           setEmail(e.target.value);
+          if(signinError == true) setSigninError(false);
         }} placeHolder={"Enter email"} type={"email"} value={email} />
         <Input onChange={(e) => {
           setPassword(e.target.value);
+          if(signinError == true) setSigninError(false);
         }} placeHolder={"Enter password"} type={"password"} value={password} />
         <Button onClick={() => {
           fetch("http://localhost:3000/signin", {
             method: "POST",
             headers: {
-              'Content-Type': 'application/json'
+              'content-type': 'application/json'
             },
             body: JSON.stringify({
               email,
@@ -41,12 +43,13 @@ export const Signin = () => {
                 console.log("Sign-in failed:", result);
               } else {
                 setSigninError(false);
-                console.log("Success:", result);
+                console.log("Sign-in success:", result);
+                localStorage.setItem("token", result.token);
               }
             })
           }).catch((err) => {
-              console.error("Network error:", err);
-              setSigninError(true);
+            setSigninError(true);
+            console.log("Sign-in failed:", err);
           })
         }} data={"Sign in"} />  
 

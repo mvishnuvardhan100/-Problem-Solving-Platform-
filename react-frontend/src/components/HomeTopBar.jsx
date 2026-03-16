@@ -1,7 +1,10 @@
 import styles from './HomeTopBar.module.css'; 
 import { Link } from "react-router-dom";
+import { SignupSignin } from "./SignupSignin";
+import { useState } from "react";
 
 export const HomeTopBar = () => {
+  const { isLoggedIn } = useContext(AuthContext)
   return (
     <div className={styles.topBar}>
       <div className={styles.topBar1}>
@@ -27,21 +30,9 @@ export const HomeTopBar = () => {
       <div className={styles.topBar2}>
         <div>
           <input className={styles.search} type="text" placeholder="Type to Search" />
-        </div>
-        <div className="verticalCenter">
-          <div>
-            <Link to={"/signin"}>
-               Sign in
-            </Link>
-          </div>
-        </div>
-        <div className="verticalCenter">
-          <div>
-            <Link to={"/signup"}>
-               Sign up
-            </Link>
-          </div>
-        </div>
+        </div> 
+        {!isLoggedIn && <SignupSignin />}
+        
       </div>
     </div>
   )
