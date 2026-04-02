@@ -1,5 +1,5 @@
 import styles from "./HomeDescription.module.css";
-import mainLogo from './mainLogo.png';
+import mainLogo3 from './mainLogo3.png';
 
 export const HomeDescription = () => {
   return (
@@ -12,7 +12,7 @@ export const HomeDescription = () => {
         </div>
         <div className="verticalCenter">
           <div>
-            <img className={styles.mainLogo} src={mainLogo} alt="mainLogo" />
+            <img className={styles.mainLogo} src={mainLogo3} alt="mainLogo" />
           </div>
         </div>
       </div>

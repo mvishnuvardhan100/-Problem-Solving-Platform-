@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export const SignupSignin = () => {
   return (
-    <>
+    <div>
      <div className="verticalCenter">
         <div>
           <Link to={"/signin"}>
@@ -17,6 +17,6 @@ export const SignupSignin = () => {
           </Link>
         </div>
     </div>
-    </>
+    </div>
   )
 }

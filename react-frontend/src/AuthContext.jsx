@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import { Loading } from "./components/Loading";
 
 export const AuthContext = createContext();
 
@@ -22,9 +23,13 @@ export const AuthProvider = ({ children }) => {
     setIsLoggedIn(false);
   }
 
+  if(loading) {
+    return <Loading />
+  }
+
   return (
-    <AuthContext.Provider value={{login, logout, loading, isLoggedIn}}>
-      {!loading && children}
+    <AuthContext.Provider value={{login, logout, isLoggedIn}}> 
+     {children}
     </AuthContext.Provider>
   );
 

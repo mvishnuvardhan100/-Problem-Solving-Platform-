@@ -1,6 +1,24 @@
 .avatar {
-  width: 35px;
-  display: block;
+  width: 40px;          /* Adjusted size slightly for initials */
+  height: 40px;
+  border-radius: 50%;
+  background-color: #2c3e50; /* A nice dark slate instead of pure black */
+  color: white;         /* Text color */
+  
+  /* Centering Logic */
+  display: flex;
+  align-items: center;  /* Vertical centering */
+  justify-content: center; /* Horizontal centering */
+  
+  /* Typography */
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  user-select: none;    /* Prevents highlighting the initials on click */
+  
+  /* Optional: Smooth border for depth */
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 

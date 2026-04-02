@@ -7,7 +7,7 @@ import { AuthContext } from "../AuthContext";
 import { AvatarSignout } from "./AvatarSignout";
 
 export const HomeTopBar = () => {
-  const { isLoggedIn } = useContext(AuthContext)
+  const { isLoggedIn } = useContext(AuthContext);
   return (
     <div className={styles.topBar}>
       <div className={styles.topBar1}>
